@@ -1,0 +1,43 @@
+--  department Table
+CREATE TABLE department (
+  dept_no VARCHAR(100) PRIMARY KEY,
+  dept_name VARCHAR
+);
+
+--employees table
+CREATE TABLE employees (
+  	emp_no VARCHAR(100) PRIMARY KEY,
+  	emp_title VARCHAR(100),
+	birth_date DATE,
+	first_name VARCHAR(100),
+	last_name VARCHAR(100),
+	sex VARCHAR,
+	hire_date DATE	
+);
+-- employee_deppartment table
+CREATE TABLE dept_emp (
+  emp_no VARCHAR(100) ,
+  FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
+  dept_no VARCHAR(100),
+  FOREIGN KEY (dept_no) REFERENCES department(dept_no),
+  PRIMARY KEY (emp_no, dept_no)
+);
+
+
+CREATE TABLE dept_manager (
+  dept_no VARCHAR(100),
+  FOREIGN KEY (dept_no) REFERENCES department(dept_no),
+  emp_no VARCHAR(100) ,
+  FOREIGN KEY (emp_no) REFERENCES employees(emp_no),  
+  PRIMARY KEY (emp_no, dept_no)
+);
+
+--salary table
+CREATE TABLE salary (
+  	emp_no VARCHAR(100) ,
+  	FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
+	salary INT  	
+);
+
+
+
